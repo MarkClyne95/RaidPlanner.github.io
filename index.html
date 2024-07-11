@@ -14,7 +14,7 @@
 <body>
   <div class="container mt-3">
     <h1>Weekly Check-In System</h1>
-    <p>Mark each box to confirm your attendance for the day.</p>
+    <p>Mark each box (Y/N) to confirm your attendance for the day.</p>
     <table class="table table-bordered table-hover" id="check-in-table">
       <thead>
         <tr>
@@ -42,7 +42,7 @@
       }
     }
 
-    // Function to populate table body with names and checkboxes
+    // Function to populate table body with names and placeholders
     function populatePeople() {
       const tableBody = document.getElementById('check-in-table').getElementsByTagName('tbody')[0];
       tableBody.innerHTML = ''; // Clear existing rows
@@ -53,29 +53,12 @@
         tr.appendChild(nameTd);
         for (let j = 1; j <= 7; j++) {
           const td = document.createElement('td');
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          td.appendChild(checkbox);
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.size = 1; // Restrict input size to 1 character (Y/N)
+          input.value = 'Y'; // Set default value to "Y"
+          td.appendChild(input);
           tr.appendChild(td);
         }
         tableBody.appendChild(tr);
-      }
-    }
-
-    // Call functions to populate table on page load
-    populateDays();
-    populatePeople();
-
-    // Function to download check-in data as CSV
-    function downloadCSV(data) {
-      const csvContent = 'data:text/csv;charset=utf-8,' + data.replace(/ /g, '+');
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "check-in_data.csv");
-      document.body.appendChild(link); // Required for Firefox
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    // Function to get check-in data from
+      
