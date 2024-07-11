@@ -14,7 +14,12 @@
 <body>
   <div class="container mt-3">
     <h1>Weekly Check-In System</h1>
-    <p>Mark each box (Y/N) to confirm your attendance for the day.</p>
+    <p>**Instructions:**</p>
+    <ul>
+      <li>Download the sample attendance.csv file (provided in this repository) as a reference.</li>
+      <li>Manually enter "Y" (Yes) or "N" (No) in each cell to confirm your attendance for the day.</li>
+      <li>Click the "Save Availability" button to download your check-in data.</li>
+    </ul>
     <table class="table table-bordered table-hover" id="check-in-table">
       <thead>
         <tr>
@@ -42,23 +47,8 @@
       }
     }
 
-    // Function to populate table body with names and placeholders
+    // Function to populate table body with names and input fields
     function populatePeople() {
       const tableBody = document.getElementById('check-in-table').getElementsByTagName('tbody')[0];
       tableBody.innerHTML = ''; // Clear existing rows
-      for (let i = 1; i <= 8; i++) {
-        const tr = document.createElement('tr');
-        const nameTd = document.createElement('td');
-        nameTd.textContent = `Person ${i}`;
-        tr.appendChild(nameTd);
-        for (let j = 1; j <= 7; j++) {
-          const td = document.createElement('td');
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.size = 1; // Restrict input size to 1 character (Y/N)
-          input.value = 'Y'; // Set default value to "Y"
-          td.appendChild(input);
-          tr.appendChild(td);
-        }
-        tableBody.appendChild(tr);
-      
+      for (let i = 1; i <= 8; i++)
